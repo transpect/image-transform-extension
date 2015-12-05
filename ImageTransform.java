@@ -75,17 +75,16 @@ public class ImageTransform extends DefaultStep {
         
     	String href = getOption(_href).getString();
     	
-//    	tree.startDocument(step.getNode().getBaseURI());
 	    File file = new File(href);
 	    if (file.exists()) {
 	    	imageTransform(file);
 	    } else {
+	    	tree.startDocument(step.getNode().getBaseURI());
 	    	tree.addStartElement(c_error);
 	    	tree.addText("No file found");
-	    }
-
-    	tree.endDocument();
-//    	myReport.write(tree.getResult());
+	    	tree.endDocument();
+	    	myResult.write(tree.getResult());
+	    }    	
     }
     
     public void imageTransform(File file) {
