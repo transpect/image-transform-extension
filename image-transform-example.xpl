@@ -23,7 +23,7 @@
           </mediaobject>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="CMYK.jpg"/>
+              <imagedata fileref="test/CMYK.jpg"/>
             </imageobject>
           </mediaobject>
           <para>Text</para>
@@ -43,7 +43,7 @@
   
   <p:sink/>
   
-  <p:store cx:decode="true" href="test.jpg">
+  <p:store cx:decode="true" href="test/test.jpg">
   	<p:input port="source">
   		<p:pipe step="image-transform" port="result"/>
   	</p:input>

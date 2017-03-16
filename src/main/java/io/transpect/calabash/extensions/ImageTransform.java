@@ -1,3 +1,5 @@
+package io.transpect.calabash.extensions;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
