@@ -19,6 +19,8 @@ import javax.imageio.stream.MemoryCacheImageOutputStream;
 
 import net.sf.saxon.s9api.QName;
 import net.sf.saxon.s9api.SaxonApiException;
+import net.sf.saxon.om.AttributeMap;
+import net.sf.saxon.om.EmptyAttributeMap;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.imaging.ImageInfo;
@@ -34,6 +36,7 @@ import com.xmlcalabash.io.WritablePipe;
 import com.xmlcalabash.library.DefaultStep;
 import com.xmlcalabash.runtime.XAtomicStep;
 import com.xmlcalabash.util.TreeWriter;
+import com.xmlcalabash.util.TypeUtils;
 
 public class ImageTransform extends DefaultStep {
 	
@@ -162,8 +165,9 @@ public class ImageTransform extends DefaultStep {
 			String base64 = Base64.encodeBase64String(bytes);
 			tree.startDocument(step.getNode().getBaseURI());
 			tree.addStartElement(c_data);
-			tree.addAttribute(new QName("content-type"), mediaType);
-			tree.addAttribute(new QName("encoding"), "base64");
+      AttributeMap attrs = EmptyAttributeMap.getInstance();
+      attrs = attrs.put(TypeUtils.attributeInfo(new QName("content-type"), mediaType));
+      attrs = attrs.put(TypeUtils.attributeInfo(new QName("encoding"), "base64"));
 			tree.addText(base64);
 			tree.addEndElement();
 			tree.endDocument();
